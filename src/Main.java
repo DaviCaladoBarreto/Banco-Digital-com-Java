@@ -1,15 +1,13 @@
 public class Main {
     public static void main(String[] args) {
-        Cliente cliente = new Cliente();
-        cliente.setNome("Davi");
+        BancoFacade bancoFacade = new BancoFacade("Banco Digital");
 
-        Conta cc = new ContaCorrente(cliente);
-        Conta poupanca = new ContaPoupanca(cliente);
+        Conta cc = bancoFacade.abrirContaCorrente("Davi");
+        Conta poupanca = bancoFacade.abrirContaPoupanca("Maria");
 
-        cc.depositar(1000);
-        cc.transferir(200, poupanca);
+        bancoFacade.depositar(cc, 1000);
+        bancoFacade.transferir(cc, poupanca, 200);
 
-        cc.imprimirExtrato();
-        poupanca.imprimirExtrato();
+        bancoFacade.mostrarContas();
     }
 }
